@@ -1,4 +1,4 @@
-MIDI Patch Randomizer
+# MIDI Patch Randomizer
 
 ```
 yarn install
