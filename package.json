@@ -4,6 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "webmidi": "^2.5.1"
+    "http-server": "0.12.3",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.0.2",
+    "webmidi": "2.5.1"
+  },
+  "scripts": {
+    "start": "http-server"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

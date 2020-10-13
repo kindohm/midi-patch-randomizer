@@ -1,17 +1,30 @@
 <html>
   <head>
     <style>
-      body{ background-color: #333; color: #999; font-family: sans-serif;}
-      button { padding: 10px;}
-      span { width: 90px; display: inline-block; }
-      .param { margin-bottom: 10px;}
-      .param input { width: 200px; margin-right: 10px; }
+      body {
+        background-color: #333;
+        color: #999;
+        font-family: sans-serif;
+      }
+      button {
+        padding: 10px;
+      }
+      span {
+        width: 90px;
+        display: inline-block;
+      }
+      .param {
+        margin-bottom: 10px;
+      }
+      .param input {
+        width: 200px;
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body>
     <div>
       <select id="devices"></select>
-
       <button id="morphButton">morph</button>
       <button id="randomizeButton">randomize</button>
 
@@ -33,20 +46,20 @@
       let morphInterval = 0;
 
       let parameters = [
-        { name: "filter", value: 24, min: 0, max: 127, ccn: 12 },
-        { name: "phaser", value: 24, ccn: 5 },
-        { name: "width", value: 24, ccn: 6 },
-        { name: "offset", value: 24, ccn: 7 },
-        { name: "rate", value: 66, ccn: 1, min: 55, max: 127 },
-        { name: "tension", value: 24, ccn: 4 },
-        { name: "skew", value: 55, ccn: 3 },
-        { name: "pulse width", value: 55, ccn: 2 },
-        { name: "prism", value: 55, ccn: 11 },
-        { name: "detune", value: 55, ccn: 9 },
-        { name: "phaser type", value: 55, ccn: 8 },
-        { name: "mix", value: 55, ccn: 10 },
-        { name: "phase", value: 55, ccn: 14 },
-        { name: "xfade", value: 55, ccn: 15 },
+        { name: 'filter', value: 24, min: 0, max: 127, ccn: 12 },
+        { name: 'phaser', value: 24, ccn: 5 },
+        { name: 'width', value: 24, ccn: 6 },
+        { name: 'offset', value: 24, ccn: 7 },
+        { name: 'rate', value: 66, ccn: 1, min: 55, max: 127 },
+        { name: 'tension', value: 24, ccn: 4 },
+        { name: 'skew', value: 55, ccn: 3 },
+        { name: 'pulse width', value: 55, ccn: 2 },
+        { name: 'prism', value: 55, ccn: 11 },
+        { name: 'detune', value: 55, ccn: 9 },
+        { name: 'phaser type', value: 55, ccn: 8 },
+        { name: 'mix', value: 55, ccn: 10 },
+        { name: 'phase', value: 55, ccn: 14 },
+        { name: 'xfade', value: 55, ccn: 15 },
       ];
 
       parameters = parameters.map((p) => ({
@@ -80,9 +93,9 @@
 
           const control = document.getElementById(param.name);
           control.value = param.value;
-          const label = document.getElementById(param.name + "ValueLabel");
+          const label = document.getElementById(param.name + 'ValueLabel');
           label.innerText = control.value;
-          control.dispatchEvent(new Event("inputx", { bubbles: true }));
+          control.dispatchEvent(new Event('inputx', { bubbles: true }));
         }
       };
 
@@ -107,64 +120,64 @@
         const { ccn, value, channel, name } = parameter;
         const val = parseInt(e.target.value);
         parameter.value = val;
-        const label = document.getElementById(name + "ValueLabel");
+        const label = document.getElementById(name + 'ValueLabel');
         label.innerText = val;
         targetDevice.sendControlChange(ccn, val, channel || 1);
       };
 
       const randomClick = () => {
-        parameters.forEach(param => {
+        parameters.forEach((param) => {
           param.value = getRandomIntInclusive(param.min, param.max);
           const control = document.getElementById(param.name);
           control.value = param.value;
-          const label = document.getElementById(param.name + "ValueLabel");
+          const label = document.getElementById(param.name + 'ValueLabel');
           label.innerText = control.value;
-          control.dispatchEvent(new Event("inputx", { bubbles: true }));
-        })
-      }
+          control.dispatchEvent(new Event('inputx', { bubbles: true }));
+        });
+      };
 
-      const params = document.getElementById("params");
+      const params = document.getElementById('params');
 
       parameters.forEach((p) => {
-        let paramContainer = document.createElement("div");
+        let paramContainer = document.createElement('div');
         paramContainer.setAttribute('class', 'param');
-        let paramInput = document.createElement("input");
-        let paramLabel = document.createElement("span");
-        let paramValueLabel = document.createElement("span");
-        paramValueLabel.setAttribute("id", p.name + "ValueLabel");
+        let paramInput = document.createElement('input');
+        let paramLabel = document.createElement('span');
+        let paramValueLabel = document.createElement('span');
+        paramValueLabel.setAttribute('id', p.name + 'ValueLabel');
         paramValueLabel.innerText = p.value;
         paramLabel.innerText = p.name;
         paramContainer.appendChild(paramLabel);
-        paramInput.setAttribute("type", "range");
-        paramInput.setAttribute("value", p.value);
-        paramInput.setAttribute("min", p.min || 0);
-        paramInput.setAttribute("max", p.max || 127);
-        paramInput.setAttribute("step", 1);
-        paramInput.setAttribute("id", p.name);
+        paramInput.setAttribute('type', 'range');
+        paramInput.setAttribute('value', p.value);
+        paramInput.setAttribute('min', p.min || 0);
+        paramInput.setAttribute('max', p.max || 127);
+        paramInput.setAttribute('step', 1);
+        paramInput.setAttribute('id', p.name);
         paramContainer.appendChild(paramInput);
         params.appendChild(paramContainer);
         paramContainer.appendChild(paramValueLabel);
-        paramInput.addEventListener("inputx", paramChange);
-        paramInput.addEventListener("input", manualParamChange);
+        paramInput.addEventListener('inputx', paramChange);
+        paramInput.addEventListener('input', manualParamChange);
       });
 
-      const morphButton = document.getElementById("morphButton");
-      morphButton.addEventListener("mousedown", morphOn);
-      morphButton.addEventListener("mouseup", morphOff);
+      const morphButton = document.getElementById('morphButton');
+      morphButton.addEventListener('mousedown', morphOn);
+      morphButton.addEventListener('mouseup', morphOff);
 
       const randomizeButton = document.getElementById('randomizeButton');
       randomizeButton.addEventListener('click', randomClick);
 
       const setTargetDevice = () => {
-        const devices = document.getElementById("devices");
+        const devices = document.getElementById('devices');
         targetDevice = WebMidi.getOutputByName(devices.value);
       };
 
       WebMidi.enable(function (err) {
-        const devices = document.getElementById("devices");
+        const devices = document.getElementById('devices');
         WebMidi.outputs.forEach((output) => {
-          let option = document.createElement("option");
-          option.setAttribute("value", output.name);
+          let option = document.createElement('option');
+          option.setAttribute('value', output.name);
           option.innerText = output.name;
           devices.appendChild(option);
         });
