@@ -1,0 +1,9 @@
+{
+  "name": "patch-randomizer2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "webmidi": "^2.5.1"
+  }
+}
