@@ -71,8 +71,7 @@
       const getNewMorphParams = () => {
         return parameters.map((p) => ({
           ...p,
-          velocity:
-            getRandomIntInclusive(1, 5) * (Math.random() > 0.5 ? 1 : -1),
+          velocity: Math.random() * 3 * (Math.random() > 0.5 ? 1 : -1),
         }));
       };
 
@@ -94,7 +93,7 @@
           const control = document.getElementById(param.name);
           control.value = param.value;
           const label = document.getElementById(param.name + 'ValueLabel');
-          label.innerText = control.value;
+          label.innerText = param.value.toFixed(2);
           control.dispatchEvent(new Event('inputx', { bubbles: true }));
         }
       };
@@ -121,7 +120,7 @@
         const val = parseInt(e.target.value);
         parameter.value = val;
         const label = document.getElementById(name + 'ValueLabel');
-        label.innerText = val;
+        label.innerText = val.toFixed(2);
         targetDevice.sendControlChange(ccn, val, channel || 1);
       };
 
@@ -131,7 +130,7 @@
           const control = document.getElementById(param.name);
           control.value = param.value;
           const label = document.getElementById(param.name + 'ValueLabel');
-          label.innerText = control.value;
+          label.innerText = param.value.toFixed(2);
           control.dispatchEvent(new Event('inputx', { bubbles: true }));
         });
       };
@@ -152,7 +151,7 @@
         paramInput.setAttribute('value', p.value);
         paramInput.setAttribute('min', p.min || 0);
         paramInput.setAttribute('max', p.max || 127);
-        paramInput.setAttribute('step', 1);
+        paramInput.setAttribute('step', 0.25);
         paramInput.setAttribute('id', p.name);
         paramContainer.appendChild(paramInput);
         params.appendChild(paramContainer);
