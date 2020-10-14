@@ -16,8 +16,34 @@
       .param {
         margin-bottom: 10px;
       }
-      .param input {
+
+      input[type='range'] {
+        overflow: hidden;
+        -webkit-appearance: none;
+        background-color: #666;
         width: 200px;
+      }
+
+      input[type='range']::-webkit-slider-runnable-track {
+        height: 20px;
+        width: 400px;
+        -webkit-appearance: none;
+        color: #13bba4;
+        margin-top: -1px;
+      }
+
+      input[type='range']::-webkit-slider-thumb {
+        width: 20px;
+        -webkit-appearance: none;
+        height: 20px;
+        cursor: ew-resize;
+        background: #434343;
+        box-shadow: -400px 0 0 400px #43e5f7;
+      }
+
+      .param input {
+        width: 400px;
+        height: 20px;
         margin-right: 10px;
       }
     </style>
@@ -46,8 +72,9 @@
       let morphInterval = 0;
 
       let parameters = [
-        { name: 'filter', value: 24, min: 0, max: 127, ccn: 12 },
-        { name: 'phaser', value: 24, ccn: 5 },
+        { name: 'x', value: 55, ccn: 16 },
+        { name: 'y', value: 55, ccn: 17 },
+        { name: 'z', value: 55, ccn: 18 },
         { name: 'width', value: 24, ccn: 6 },
         { name: 'offset', value: 24, ccn: 7 },
         { name: 'rate', value: 66, ccn: 1, min: 55, max: 127 },
@@ -55,7 +82,6 @@
         { name: 'skew', value: 55, ccn: 3 },
         { name: 'pulse width', value: 55, ccn: 2 },
         { name: 'prism', value: 55, ccn: 11 },
-        { name: 'detune', value: 55, ccn: 9 },
         { name: 'phaser type', value: 55, ccn: 8 },
         { name: 'mix', value: 55, ccn: 10 },
         { name: 'phase', value: 55, ccn: 14 },
